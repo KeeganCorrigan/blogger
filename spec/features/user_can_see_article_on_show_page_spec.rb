@@ -4,13 +4,19 @@ describe 'user sees one article' do
   describe 'they link from the articles index' do
     it 'displays infromation for one article' do
       article = Article.create!(title: "Title 1", body: "Body 2")
+      comment_1 = article.comments.create(author_name: "Me", body: "Commenty comments")
+      comment_2 = article.comments.create(author_name: "You", body: "So much to say")
 
-      visit '/articles'
+      visit articles_path
 
       click_link article.title
 
       expect(page).to have_content(article.title)
       expect(page).to have_content(article.body)
+      expect(page).to have_content(comment_1.author_name)
+      expect(page).to have_content(comment_1.body)
+      expet(page).to have_content(comment_2.author_name)
+      expect(page).to have_content(comment_2.body)
     end
   end
 end
