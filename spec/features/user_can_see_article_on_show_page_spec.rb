@@ -25,13 +25,13 @@ describe "user sees one article" do
         visit article_path(article)
 
         fill_in "comment[author_name]", with: "ME!"
-        fill_in "comment[body]", with: "So mmany thoughts on this article"
+        fill_in "comment[body]", with: "So many thoughts on this article"
         click_on "Submit"
 
         expect(current_path).to eq(article_path(article))
         expect(page).to have_content("Post a Comment")
         expect(page).to have_content("ME!")
-        expect(page).to have_content("So many thoughts on this article.")
+        expect(page).to have_content("So many thoughts on this article")
       end
     end
   end
