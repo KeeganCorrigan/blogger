@@ -15,8 +15,10 @@ describe 'user edits an article' do
         click_on "Update Article"
 
         expect(current_path).to eq(article_path(article_1))
+
         expect(page).to have_content("Edited title!")
         expect(page).to_not have_content("title 1")
+        expect(page).to have_content("Article 'Edited title!' Updated")
       end
     end
   end
