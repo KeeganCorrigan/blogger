@@ -39,6 +39,18 @@ describe "user sees one article" do
         expect(page).to have_content("So many thoughts on this article")
         expect(page).to have_content("Comments (1)")
       end
+      describe 'they click on a tag' do
+        it 'displays tag show' do
+          article = Article.create!(title: "New Title", body: "New Body")
+          tag = article.tags.create!(name: "Name")
+
+          visit article_path(article)
+
+          click_on tag.name
+
+          expect(current_path).to eq(tag_path(tag))
+        end
+      end
     end
   end
 end
