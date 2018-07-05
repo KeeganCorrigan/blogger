@@ -6,4 +6,9 @@ class Article < ApplicationRecord
 
   validates_presence_of :title, :body
 
+  def tag_list
+    self.tags.collect do |tag|
+      tag.name
+    end.join(", ")
+  end
 end
