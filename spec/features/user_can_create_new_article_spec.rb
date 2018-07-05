@@ -9,14 +9,17 @@ describe 'user creates a new article' do
 
         expect(current_path).to eq(new_article_path)
 
+
         fill_in "article[title]", with: "New Title!"
         fill_in "article[body]", with: "New Body"
-        fill_in "article[tag_list]", with: "ruby, technology"
+        fill_in "article[tag_list]", with: "ruby technology"
+
         click_on "Create Article"
 
         expect(page).to have_content("New Title!")
         expect(page).to have_content("New Body")
         expect(page).to have_content("Article Created!")
+        expect(page).to have_content("ruby technology")
       end
     end
   end

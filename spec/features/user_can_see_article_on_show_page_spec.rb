@@ -4,6 +4,8 @@ describe "user sees one article" do
   describe "they link from the article index" do
     it "displays information for one article" do
       article = Article.create!(title: "New Title", body: "New Body")
+      tag_1 = article.tags.create(name: "Ruby")
+      tag_2 = article.tags.create(name: "Technology")
       comment_1 = article.comments.create(author_name: "Me", body: "Commenty comments")
       comment_2 = article.comments.create(author_name: "You", body: "So much to say")
 
@@ -17,6 +19,8 @@ describe "user sees one article" do
       expect(page).to have_content(comment_1.body)
       expect(page).to have_content(comment_2.author_name)
       expect(page).to have_content(comment_2.body)
+      expect(page).to have_content(tag_1.name)
+      expect(page).to have_content(tag_2.name)
     end
     describe 'they fill in a comment form' do
       it 'displays the comment on the article show' do
